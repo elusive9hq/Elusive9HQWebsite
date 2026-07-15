@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elusive 9 HQ</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #ffffff;
+      color: #000000;
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1.5rem;
+    }
+
+    .container {
+      text-align: center;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    h1 {
+      font-size: clamp(1.6rem, 6.5vw, 3.5rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      text-transform: uppercase;
+      color: #000;
+      margin-bottom: 0.75rem;
+    }
+
+    .subtitle {
+      font-size: clamp(0.85rem, 3.5vw, 1.35rem);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #000;
+      margin-bottom: 3rem;
+    }
+
+    .tagline {
+      font-size: clamp(1rem, 4vw, 1.4rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #000;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 12px;
+      padding: 13px 22px;
+      min-width: 200px;
+      border: 1px solid #000;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.12s ease, opacity 0.12s ease;
+    }
+
+    .badge:hover { transform: translateY(-2px); }
+    .badge:active { transform: translateY(0); opacity: 0.85; }
+
+    .badge svg { flex-shrink: 0; }
+
+    .badge-text { display: flex; flex-direction: column; text-align: left; }
+    .badge-text .top {
+      font-size: 0.58rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+    .badge-text .main {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    /* Subtle redirect loading state */
+    .redirect-notice {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <h1>Coming Soon for iOS</h1>
+    <p class="subtitle">Elusive 9 HQ &mdash; Memory Systems</p>
+
+    <p class="tagline">Mindware App is currently available for Android</p>
+
+    <div class="buttons">
+      <a href="https://play.google.com/store/apps/details?id=com.elusive9hq.mindware&hl=en_GB" class="badge" aria-label="Get it on Google Play">
+        <svg width="26" height="30" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gp1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00C3FF"/>
+              <stop offset="100%" stop-color="#1976D2"/>
+            </linearGradient>
+            <linearGradient id="gp2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#FFD740"/>
+              <stop offset="100%" stop-color="#F57C00"/>
+            </linearGradient>
+            <linearGradient id="gp3" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FF4E50"/>
+              <stop offset="100%" stop-color="#C62828"/>
+            </linearGradient>
+            <linearGradient id="gp4" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#00E676"/>
+              <stop offset="100%" stop-color="#388E3C"/>
+            </linearGradient>
+          </defs>
+          <path fill="url(#gp1)" d="M30 470 L30 42 L270 256 Z"/>
+          <path fill="url(#gp2)" d="M30 42 L390 215 L270 256 Z"/>
+          <path fill="url(#gp4)" d="M270 256 L390 297 L30 470 Z"/>
+          <path fill="url(#gp3)" d="M390 215 L460 256 L390 297 L270 256 Z"/>
+        </svg>
+        <span class="badge-text">
+          <span class="top">Get it on</span>
+          <span class="main">Google Play</span>
+        </span>
+      </a>
+    </div>
+
+<!--     <p class="redirect-notice" id="redirectText">Detecting device...</p> -->
+
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const playStoreUrl = "https://play.google.com/store/apps/details?id=com.elusive9hq.mindware&hl=en_GB";
+      const redirectText = document.getElementById("redirectText");
+
+      // Robust check for iOS devices (iPhone, iPad, iPod)
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                    (/Macintosh/.test(navigator.userAgent) && 'ontouchend' in document);
+
+      if (!isIOS) {
+        // User is on Android or Desktop -> Send them to the Play Store
+        redirectText.innerText = "Redirecting to Google Play...";
+        // window.location.replace(playStoreUrl);
+      } else {
+        // User is on iOS -> Keep them here and show the coming soon page
+        redirectText.innerText = "Check back soon for the Apple App Store release.";
+      }
+    });
+  </script>
+</body>
+</html>
