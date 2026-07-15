@@ -163,7 +163,7 @@
       if (!isIOS) {
         // User is on Android or Desktop -> Send them to the Play Store
         redirectText.innerText = "Redirecting to Google Play...";
-        // window.location.replace(playStoreUrl);
+        window.location.replace(playStoreUrl);
       } else {
         // User is on iOS -> Keep them here and show the coming soon page
         redirectText.innerText = "Check back soon for the Apple App Store release.";
